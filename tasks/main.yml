@@ -1,0 +1,6 @@
+---
+- name: Install required packages for oVirt Engine deployment
+  include_tasks: install_packages.yml
+
+- name: Run engine setup
+  include_tasks: engine_setup.yml

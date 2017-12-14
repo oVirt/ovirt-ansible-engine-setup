@@ -1,0 +1,11 @@
+---
+- name: Install ovirt-engine/rhvm package
+  package:
+    name: "{{ ovirt_engine_setup_product_type }}"
+    state: present
+
+- name: Install rest of the packages required for oVirt Engine deployment
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ovirt_engine_setup_package_list }}"
