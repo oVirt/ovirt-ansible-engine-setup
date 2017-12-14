@@ -1,0 +1,65 @@
+---
+- block:
+  - name: Set answer file path
+    set_fact:
+      answer_file_path: "/tmp/answerfile-{{ lookup('pipe', 'date +%Y%m%d%H%M%SZ') }}.txt"
+
+
+  - name: Use the default answerfile
+    template:
+      src: answerfile_{{ ovirt_engine_setup_version }}_basic.txt.j2
+      dest: "{{ answer_file_path }}"
+      mode: 0600
+      owner: root
+      group: root
+    when: ovirt_engine_setup_answer_file_path is undefined
+
+  - name: Copy custom answer file
+    template:
+      src: "{{ ovirt_engine_setup_answer_file_path }}"
+      dest: "{{ answer_file_path }}"
+      mode: 0600
+      owner: root
+      group: root
+    when: ovirt_engine_setup_answer_file_path is defined
+
+  - name: Update setup packages
+    package:
+      name: "ovirt*setup*"
+      state: latest
+    when: ovirt_engine_setup_update_setup_packages
+
+  - name: Update all packages
+    package:
+      name: "*"
+      state: latest
+    when: ovirt_engine_setup_update_all_packages
+
+  - name: Set accept defaults parameter if variable is set
+    set_fact:
+      accept_defaults: "{{ '--accept-defaults' if ovirt_engine_setup_accept_defaults else '' }}"
+
+  - name: Run engine-setup with answerfile
+    command: "engine-setup --config-append={{ answer_file_path }} {{ accept_defaults }}"
+    tags:
+      - skip_ansible_lint
+
+  - name: Make sure `ovirt-engine` service is running
+    service:
+      name: ovirt-engine
+      state: started
+
+  - name: Check if Engine health page is up
+    uri:
+      url: "http://{{ ansible_fqdn }}/ovirt-engine/services/health"
+      status_code: 200
+    register: health_page
+    retries: 12
+    delay: 10
+    until: health_page|success
+
+  always:
+    - name: Clean temporary files
+      file:
+        path: "{{ answer_file_path }}"
+        state: 'absent'
