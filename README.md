@@ -36,7 +36,8 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_update_setup_packages | False              | If `True`, setup packages will be updated before `engine-setup` will be executed. Makes sense if Engine is already installed. |
 | ovirt_engine_setup_update_all_packages | True                 | If `True`, all packages will be updated before `engine-setup` will be executed. |
 | ovirt_engine_setup_accept_defaults    | False                 | If `True` default answers will be automatically used in questions that have them during `engine-setup`. |
-| ovirt_engine_setup_require_rollback   | UNDEF                 | If `True` setup will require to be able to rollback new packages in case of a failure. If not passed the default answer from `engine-setup` will be chosen. Valid for updating/upgrading.
+| ovirt_engine_setup_require_rollback   | UNDEF                 | If `True` setup will require to be able to rollback new packages in case of a failure. If not passed the default answer from `engine-setup` will be chosen. Valid for updating/upgrading. |
+| ovirt_engine_setup_admin_password     | UNDEF                 | Password for the automatically created administrative user of the oVirt Engine.
 
 * Engine Database:
 
