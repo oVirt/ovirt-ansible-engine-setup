@@ -27,7 +27,7 @@ as ``ovirt_engine_setup_answer_file_path``.
 
 | Name                            | Default value         |  Description                                              |
 |---------------------------------|-----------------------|-----------------------------------------------------------|
-| ovirt_engine_setup_version            | 4.2                   | Allowed versions: [3.6, 4.0, 4.1, 4.2] |
+| ovirt_engine_setup_version            | 4.2                   | Allowed versions: [4.1, 4.2] |
 | ovirt_engine_setup_product_type       | ovirt-engine          | Type of product 'ovirt-engine' or 'rhvm'  |
 | ovirt_engine_setup_package_list       | []                    |  List of extra packages to be installed on engine apart from ovirt-engine package. |
 | ovirt_engine_setup_answer_file_path   | UNDEF                 | Path to custom answerfile for `engine-setup`. |
