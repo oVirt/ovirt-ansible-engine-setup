@@ -28,8 +28,8 @@ as ``ovirt_engine_setup_answer_file_path``.
 | Name                            | Default value         |  Description                                              |
 |---------------------------------|-----------------------|-----------------------------------------------------------|
 | ovirt_engine_setup_version            | 4.2                   | Allowed versions: [4.1, 4.2] |
-| ovirt_engine_setup_product_type       | ovirt-engine          | Type of product 'ovirt-engine' or 'rhvm'  |
-| ovirt_engine_setup_package_list       | []                    |  List of extra packages to be installed on engine apart from ovirt-engine package. |
+| ovirt_engine_setup_product_type       | oVirt                 | One of ["oVirt", "RHV"], case insensitive. |
+| ovirt_engine_setup_package_list       | []                    | List of extra packages to be installed on engine apart from ovirt-engine package. |
 | ovirt_engine_setup_answer_file_path   | UNDEF                 | Path to custom answerfile for `engine-setup`. |
 | ovirt_engine_setup_organization       | UNDEF                 | Organization name for certificate. |
 | ovirt_engine_setup_firewall_manager   | firewalld             | Specify the type of firewall manager to configure on Engine host, following values are availableL: `firewalld`,`iptables` or empty value to skip firewall configuration. |
