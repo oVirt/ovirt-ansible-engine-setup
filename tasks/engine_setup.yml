@@ -24,9 +24,8 @@
     when: ovirt_engine_setup_answer_file_path is defined
 
   - name: Update setup packages
-    package:
-      name: "ovirt*setup*"
-      state: latest
+    # WA for https://github.com/ansible/ansible/issues/34867
+    command: yum -y update ovirt\*setup\*
     when: ovirt_engine_setup_update_setup_packages
 
   - name: Update all packages
