@@ -13,3 +13,5 @@
       yum:
         name: python-libs
         state: latest
+      tags:
+        - skip_ansible_lint  # ANSIBLE0010
