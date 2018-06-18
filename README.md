@@ -14,7 +14,7 @@ Requirements
 ------------
 
  * Environment with configured repositories.
- * Ansible version 2.4
+ * Ansible version 2.5
 
 Role Variables
 --------------

@@ -10,6 +10,7 @@ services:
 env:
   global:
     - ANSIBLE_HOST_KEY_CHECKING="False"
+    - ANSIBLE_ROLES_PATH=tests/roles:tests/roles-deps
   matrix:
     - TEST_NAME=4.1
     - TEST_NAME=master
@@ -30,7 +31,7 @@ install:
   - ansible --version
 
   # Install ansible role tests requirements
-  - ansible-galaxy install -r tests/requirements.yml -p tests/roles/
+  - ansible-galaxy install -r tests/requirements.yml -p tests/roles-deps/
 
 script:
   # Run sytax checks and linters
