@@ -24,8 +24,9 @@
     when: ovirt_engine_setup_answer_file_path is defined
 
   - name: Update setup packages
-    # WA for https://github.com/ansible/ansible/issues/34867
-    command: yum -y update ovirt\*setup\*
+    yum:
+      name: "update ovirt*setup*"
+      update_only: true
     when: ovirt_engine_setup_update_setup_packages
     tags:
       - "skip_ansible_lint"  # ANSIBLE0006
