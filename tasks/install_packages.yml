@@ -1,11 +1,15 @@
 ---
-- name: Install oVirt Engine packages.
+- name: Install oVirt Engine package
   package:
-    name: "{{ ('ovirt-engine'
-                  if ovirt_engine_setup_product_type|lower == 'ovirt'
-                  else ('rhevm' if ovirt_engine_setup_version|float < 4.2 else 'rhvm')
-              ) }}"
+    name: "ovirt-engine"
     state: present
+  when: ovirt_engine_setup_product_type | lower == 'ovirt'
+
+- name: Install RHV package
+  package:
+    name: "{{ 'rhevm' if ovirt_engine_setup_version is version('4.2', '<') else 'rhvm' }}"
+    state: present
+  when: ovirt_engine_setup_product_type | lower == 'rhv'
 
 - name: Install rest of the packages required for oVirt Engine deployment
   package:
