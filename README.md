@@ -2,8 +2,8 @@ oVirt Engine Setup
 ==================
 
 Install required packages for oVirt Engine deployment, generates answerfile
-and runs engine-setup with it.
-Optionally the role can update oVirt engine packages.
+and runs engine-setup.
+Optionally the role update oVirt engine packages.
 
 Target Systems
 --------------
@@ -79,16 +79,28 @@ Example Playbook
 
 ```yaml
 ---
-- hosts: engine
+# Example of oVirt setup:
+- name: Setup oVirt
+  hosts: engine
   vars_files:
     # Contains encrypted `ovirt_engine_setup_admin_password` variable using ansible-vault
     - passwords.yml
   vars:
     ovirt_engine_setup_version: '4.2'
     ovirt_engine_setup_organization: 'of.ovirt.engine.com'
-    ovirt_engine_setup_admin_password: "{{ ovirt_engine_setup_admin_password }}"
-    ovirt_repositories_ovirt_release_rpm: 'http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm'
   roles:
-    - oVirt.repositories
+    - oVirt.engine-setup
+
+# Example of RHV setup:
+- name: Setup RHV
+  hosts: engine
+  vars_files:
+    # Contains encrypted `ovirt_engine_setup_admin_password` variable using ansible-vault
+    - passwords.yml
+  vars:
+    ovirt_engine_setup_version: '4.2'
+    ovirt_engine_setup_organization: 'rhv.redhat.com'
+    ovirt_engine_setup_product_type: 'rhv'
+  roles:
     - oVirt.engine-setup
 ```

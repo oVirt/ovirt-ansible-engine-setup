@@ -4,7 +4,7 @@
   vars_files:
     - passwords.yml
   vars:
-    ovirt_engine_setup_type: "ovirt-engine"
+    ovirt_engine_setup_product_type: "ovirt"
     ovirt_engine_setup_version: "{{ ovirt_engine_setup_version }}"
     ovirt_engine_setup_hostname: "localhost"
     ovirt_engine_setup_organization: "example.com"

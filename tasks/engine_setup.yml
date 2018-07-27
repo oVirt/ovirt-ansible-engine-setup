@@ -4,7 +4,6 @@
     set_fact:
       answer_file_path: "/tmp/answerfile-{{ lookup('pipe', 'date +%Y%m%d%H%M%SZ') }}.txt"
 
-
   - name: Use the default answerfile
     template:
       src: answerfile_{{ ovirt_engine_setup_version }}_basic.txt.j2
