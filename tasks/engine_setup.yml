@@ -42,8 +42,12 @@
     set_fact:
       accept_defaults: "{{ '--accept-defaults' if ovirt_engine_setup_accept_defaults else '' }}"
 
+  - name: Set offline parameter if variable is set
+    set_fact:
+      offline: "{{ '--offline' if ovirt_engine_setup_offline else '' }}"
+
   - name: Run engine-setup with answerfile
-    command: "engine-setup --config-append={{ answer_file_path }} {{ accept_defaults }}"
+    command: "engine-setup --config-append={{ answer_file_path }} {{ accept_defaults }} {{ offline }}"
     tags:
       - skip_ansible_lint
 
