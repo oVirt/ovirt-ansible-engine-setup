@@ -20,7 +20,12 @@
       mode: 0600
       owner: root
       group: root
-    when: ovirt_engine_setup_answer_file_path is defined
+    when: ovirt_engine_setup_answer_file_path is defined and ( ovirt_engine_setup_use_remote_answer_file is undefined or not ovirt_engine_setup_use_remote_answer_file )
+
+  - name: Use remote's answer file
+    set_fact:
+      answer_file_path: "{{ ovirt_engine_setup_answer_file_path }}"
+    when: ovirt_engine_setup_use_remote_answer_file
 
   - name: Update setup packages
     yum:
