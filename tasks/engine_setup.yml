@@ -25,7 +25,7 @@
   - name: Use remote's answer file
     set_fact:
       answer_file_path: "{{ ovirt_engine_setup_answer_file_path }}"
-    when: ovirt_engine_setup_use_remote_answer_file
+    when: ovirt_engine_setup_use_remote_answer_file is defined and ovirt_engine_setup_use_remote_answer_file
 
   - name: Update setup packages
     yum:
