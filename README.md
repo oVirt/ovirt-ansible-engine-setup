@@ -40,6 +40,8 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_accept_defaults    | False                 | If `True` default answers will be automatically used in questions that have them during `engine-setup`. |
 | ovirt_engine_setup_require_rollback   | UNDEF                 | If `True` setup will require to be able to rollback new packages in case of a failure. If not passed the default answer from `engine-setup` will be chosen. Valid for updating/upgrading. |
 | ovirt_engine_setup_admin_password     | UNDEF                 | Password for the automatically created administrative user of the oVirt Engine.
+| ovirt_engine_setup_engine_vacuum_full | False                 | Used only when upgrading. If `True`, before upgrade it will vacuum engine db |
+| ovirt_engine_setup_dwh_vacuum_full    | False                 | Used only when upgrading. If `True`, before upgrade it will vacuum dwh db |
 
 * Engine Database:
 
