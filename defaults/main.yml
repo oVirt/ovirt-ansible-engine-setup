@@ -9,12 +9,14 @@ ovirt_engine_setup_db_host: 'localhost'
 ovirt_engine_setup_db_port: 5432
 ovirt_engine_setup_db_name: 'engine'
 ovirt_engine_setup_db_user: 'engine'
+ovirt_engine_setup_engine_vacuum_full: false
 
 ovirt_engine_setup_dwh_db_configure: true
 ovirt_engine_setup_dwh_db_host: 'localhost'
 ovirt_engine_setup_dwh_db_port: 5432
 ovirt_engine_setup_dwh_db_name: 'ovirt_engine_history'
 ovirt_engine_setup_dwh_db_user: 'ovirt_engine_history'
+ovirt_engine_setup_dwh_vacuum_full: false
 
 ovirt_engine_setup_firewall_manager: 'firewalld'
 
