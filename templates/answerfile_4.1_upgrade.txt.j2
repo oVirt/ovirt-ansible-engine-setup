@@ -1,5 +1,14 @@
 {% include "./templates/basic_answerfile.txt.j2" %},
-OVESETUP_DB/engineVacuumFull=bool:True
 OVESETUP_DB/fixDbConfiguration=bool:True
 OVESETUP_DWH_DB/performBackup=bool:True
 OVESETUP_RHEVM_DIALOG/confirmUpgrade=bool:False
+{% if ovirt_engine_setup_engine_vacuum_full is defined and ovirt_engine_setup_engine_vacuum_full %}
+OVESETUP_DB/engineVacuumFull=bool:True
+{% else %}
+OVESETUP_DB/engineVacuumFull=bool:False
+{% endif %}
+{% if ovirt_engine_setup_dwh_vacuum_full is defined and ovirt_engine_setup_dwh_vacuum_full %}
+OVESETUP_DB/dwhVacuumFull=bool:True
+{% else %}
+OVESETUP_DB/dwhVacuumFull=bool:False
+{% endif %}
