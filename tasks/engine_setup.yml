@@ -31,7 +31,7 @@
     # WA for https://github.com/ansible/ansible/issues/34867 whic didn't get
     # fixed by suggested update_only parameter.
     command: yum -y update ovirt\*setup\*
-    when: ovirt_engine_setup_update_setup_packages
+    when: ovirt_engine_setup_update_setup_packages or ovirt_engine_setup_perform_upgrade
     tags:
       - "skip_ansible_lint"  # ANSIBLE0006
 
@@ -45,7 +45,7 @@
 
   - name: Set accept defaults parameter if variable is set
     set_fact:
-      accept_defaults: "{{ '--accept-defaults' if ovirt_engine_setup_accept_defaults else '' }}"
+      accept_defaults: "{{ '--accept-defaults' if ovirt_engine_setup_accept_defaults or ovirt_engine_setup_perform_upgrade else '' }}"
 
   - name: Set offline parameter if variable is set
     set_fact:
