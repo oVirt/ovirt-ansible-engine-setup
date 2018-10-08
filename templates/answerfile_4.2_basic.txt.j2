@@ -1,5 +1,4 @@
 {% include "./templates/basic_answerfile.txt.j2" %},
-[environment:default]
 OVESETUP_DB/engineVacuumFull=bool:{{ ovirt_engine_setup_engine_vacuum_full }}
 OVESETUP_DB/dwhVacuumFull=bool:{{ ovirt_engine_setup_dwh_vacuum_full }}
 {% if ovirt_engine_setup_provider_ovn_configure is defined and ovirt_engine_setup_provider_ovn_configure %}
