@@ -29,7 +29,7 @@
 
   - name: Update setup packages
     yum:
-      name: "update ovirt*setup*"
+      name: "ovirt*setup*"
       update_only: true
     when: ovirt_engine_setup_update_setup_packages
     tags:
