@@ -31,6 +31,7 @@
     yum:
       name: "ovirt*setup*"
       update_only: true
+      state: latest
     when: ovirt_engine_setup_update_setup_packages
     tags:
       - "skip_ansible_lint"  # ANSIBLE0006
