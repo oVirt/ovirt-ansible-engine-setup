@@ -28,10 +28,9 @@
     when: ovirt_engine_setup_use_remote_answer_file
 
   - name: Update setup packages
-    yum:
-      name: "ovirt*setup*"
-      update_only: true
-      state: latest
+    # WA for https://github.com/ansible/ansible/issues/34867 whic didn't get
+    # fixed by suggested update_only parameter.
+    command: yum -y update ovirt\*setup\*
     when: ovirt_engine_setup_update_setup_packages
     tags:
       - "skip_ansible_lint"  # ANSIBLE0006
