@@ -5,6 +5,24 @@ Install required packages for oVirt Engine deployment, generates answerfile
 and runs engine-setup.
 Optionally the role update oVirt engine packages.
 
+Note
+----
+Please note that when installing this role from Ansible Galaxy you are instructed to run following command:
+
+```bash
+$ ansible-galaxy install ovirt.engine-setup
+```
+
+This will download the role to the directory with the same name as you specified on the
+command line, in this case `ovirt.engine-setup`. But note that it is case sensitive, so if you specify
+for example `OVIRT.engine-setup` it will download the same role, but it will add it to the directory named
+`OVIRT.engine-setup`, so you later always have to use this role with upper case prefix. So be careful how
+you specify the name of the role on command line.
+
+For the RPM installation we install three legacy names `oVirt.engine-setup`, `ovirt.engine-setup` and `ovirt-engine-setup`.
+So you can use any of these names. This documentation and examples in this repository are using name `ovirt.engine-setup`.
+`oVirt.engine-setup` and `ovirt-engine-setup` role names are deprecated.
+
 Target Systems
 --------------
 
@@ -93,7 +111,7 @@ Example Playbook
     ovirt_engine_setup_version: '4.2'
     ovirt_engine_setup_organization: 'of.ovirt.engine.com'
   roles:
-    - oVirt.engine-setup
+    - ovirt.engine-setup
 
 # Example of RHV setup:
 - name: Setup RHV
@@ -106,5 +124,5 @@ Example Playbook
     ovirt_engine_setup_organization: 'rhv.redhat.com'
     ovirt_engine_setup_product_type: 'rhv'
   roles:
-    - oVirt.engine-setup
+    - ovirt.engine-setup
 ```
