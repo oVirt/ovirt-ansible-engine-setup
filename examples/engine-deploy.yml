@@ -13,5 +13,5 @@
     ovirt_engine_setup_firewall_manager: null
     ovirt_repositories_ovirt_release_rpm: "http://plain.resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm"
   roles:
-    - role: oVirt.repositories
-    - role: oVirt.engine-setup
+    - role: ovirt.repositories
+    - role: ovirt.engine-setup

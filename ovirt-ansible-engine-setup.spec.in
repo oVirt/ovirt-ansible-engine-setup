@@ -1,5 +1,6 @@
 %global rolename engine-setup
-%global roleprefix oVirt.
+%global roleprefix ovirt.
+%global roleprefix_legacy_uppercase oVirt.
 %global ansible_roles_dir ansible/roles
 
 Name: @PACKAGE_NAME@
@@ -18,6 +19,16 @@ Requires: ansible >= 2.5
 This Ansible role installs required packages for oVirt Engine deployment,
 generates answerfile and runs engine-setup with it.
 
+%pretrans -p <lua>
+-- Remove the legacy directory before installing the symlink. This is known issue in RPM:
+-- https://fedoraproject.org/wiki/Packaging:Directory_Replacement
+path_uppercase = "%{_datadir}/%{ansible_roles_dir}/%{roleprefix_legacy_uppercase}%{rolename}"
+
+st = posix.stat(path_uppercase)
+if st and st.type == "directory" then
+  os.execute('rm -rf "'..path_uppercase..'"')
+end
+
 %prep
 %setup -c -q
 
@@ -27,10 +38,12 @@ generates answerfile and runs engine-setup with it.
 export PKG_DATA_DIR_ORIG=%{_datadir}/%{ansible_roles_dir}/%{roleprefix}%{rolename}
 export PKG_DATA_DIR=%{buildroot}$PKG_DATA_DIR_ORIG
 export PKG_DOC_DIR=%{buildroot}%{_pkgdocdir}
+export ROLENAME_LEGACY_UPPERCASE=%{buildroot}%{_datadir}/%{ansible_roles_dir}/%{roleprefix_legacy_uppercase}%{rolename}
 sh build.sh install
 
 %files
 %{_datadir}/%{ansible_roles_dir}/%{roleprefix}%{rolename}
+%{_datadir}/%{ansible_roles_dir}/%{roleprefix_legacy_uppercase}%{rolename}
 
 %doc README.md
 %doc examples/
