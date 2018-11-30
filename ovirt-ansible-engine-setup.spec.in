@@ -51,6 +51,13 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Fri Nov 30 2018 Ondra Machacek <omachace@redhat.com> - 1.1.6-1
+- Require Ansible 2.7.2.
+- Support ovirt.engine-setup name.
+- update_only has an effect only if state is latest.
+- Fix command for update ovirt*setup*.
+- Add answerfiles for 4.3.
+
 * Thu Oct 04 2018 Ondra Machacek <omachace@redhat.com> - 1.1.5-1
 - Add vacuum option when upgrading.
 
