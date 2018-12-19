@@ -32,6 +32,8 @@
     # fixed by suggested update_only parameter.
     command: yum -y update ovirt\*setup\*
     when: ovirt_engine_setup_update_setup_packages or ovirt_engine_setup_perform_upgrade
+    args:
+      warn: false
     tags:
       - "skip_ansible_lint"  # ANSIBLE0006
 
@@ -43,16 +45,12 @@
     tags:
       - "skip_ansible_lint"  # ANSIBLE0010
 
-  - name: Set accept defaults parameter if variable is set
-    set_fact:
-      accept_defaults: "{{ '--accept-defaults' if ovirt_engine_setup_accept_defaults or ovirt_engine_setup_perform_upgrade else '' }}"
-
   - name: Set offline parameter if variable is set
     set_fact:
       offline: "{{ '--offline' if ovirt_engine_setup_offline else '' }}"
 
   - name: Run engine-setup with answerfile
-    command: "engine-setup --config-append={{ answer_file_path }} {{ accept_defaults }} {{ offline }}"
+    command: "engine-setup --accept-defaults --config-append={{ answer_file_path }} {{ offline }}"
     tags:
       - skip_ansible_lint
 
@@ -68,7 +66,7 @@
     register: health_page
     retries: 12
     delay: 10
-    until: health_page|success
+    until: health_page is success
 
   always:
     - name: Clean temporary files
