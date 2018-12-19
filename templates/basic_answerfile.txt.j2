@@ -13,6 +13,7 @@ OSETUP_RPMDISTRO/requireRollback=none:None
 {% endif %}
 OVESETUP_DB/host=str:{{ovirt_engine_setup_db_host}}
 OVESETUP_DB/user=str:{{ovirt_engine_setup_db_user}}
+OVESETUP_SYSTEM/memCheckEnabled=bool:False
 {% if ovirt_engine_setup_db_password is defined %}
 OVESETUP_DB/password=str:{{ovirt_engine_setup_db_password}}
 {% else %}
@@ -44,7 +45,9 @@ OVESETUP_DWH_DB/securedHostValidation=bool:False
 {% else %}
 OVESETUP_DWH_DB/securedHostValidation=none:None
 {% endif %}
+{% if ovirt_engine_setup_organization is defined %}
 OVESETUP_PKI/organization=str:{{ ovirt_engine_setup_organization }}
+{% endif %}
 OVESETUP_CONFIG/adminPassword=str:{{ ovirt_engine_setup_admin_password }}
 {% if ovirt_engine_setup_dwh_db_configure is defined and ovirt_engine_setup_dwh_db_configure %}
 OVESETUP_DWH_CORE/enable=bool:True

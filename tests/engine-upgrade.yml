@@ -14,7 +14,4 @@
   roles:
     - role: oVirt.repositories
     - role: oVirt.engine-setup
-      # --accept-defaults needed because of: https://bugzilla.redhat.com/show_bug.cgi?id=1518697
-      # Can be solved also with https://bugzilla.redhat.com/show_bug.cgi?id=1396925
-      ovirt_engine_setup_accept_defaults: true
       ovirt_engine_setup_answer_file_path: "answerfile_{{ ovirt_engine_setup_version }}_upgrade.txt.j2"
