@@ -51,6 +51,10 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Fri Feb 22 2019 Ondra Machacek <omachace@redhat.com> - 1.1.8-1
+- Get ready for delegate_to.
+- Add wait_running_tasks option for upgrade.
+
 * Wed Jan 16 2019 Ondra Machacek <omachace@redhat.com> - 1.1.7-1
 - Add option to perform upgrade.
 
