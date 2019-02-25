@@ -1,1 +1,4 @@
 {% include "./templates/answerfile_4.2_basic.txt.j2" %}
+{% if ovirt_engine_cinderlib_enable is defined %}
+QUESTION/1/ovirt-cinderlib-enable=str:{{ ovirt_engine_cinderlib_enable | ternary('yes','no')  }}
+{% endif %}

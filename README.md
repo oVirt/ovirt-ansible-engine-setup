@@ -59,6 +59,7 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_admin_password     | UNDEF                 | Password for the automatically created administrative user of the oVirt Engine.
 | ovirt_engine_setup_perform_upgrade    | False                 | If true this role is used to perform upgrade. |
 | ovirt_engine_setup_wait_running_tasks | False                 | If true, engine-setup will wait till running tasks finish. Valid for `ovirt_engine_setup_version` >= 4.2 |
+| ovirt_engine_cinderlib_enable         | False                 | If true, cinderlib enabled.. Valid for `ovirt_engine_setup_version` >= 4.3 |
 
 * Engine Database:
 
