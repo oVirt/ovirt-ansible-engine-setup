@@ -25,7 +25,7 @@
   - name: Use remote's answer file
     set_fact:
       answer_file_path: "{{ ovirt_engine_setup_answer_file_path }}"
-    when: ovirt_engine_setup_use_remote_answer_file
+    when: ovirt_engine_setup_use_remote_answer_file|bool
 
   - name: Update setup packages
     # WA for https://github.com/ansible/ansible/issues/34867 whic didn't get
@@ -41,7 +41,7 @@
     package:
       name: "*"
       state: latest
-    when: ovirt_engine_setup_update_all_packages
+    when: ovirt_engine_setup_update_all_packages|bool
     tags:
       - "skip_ansible_lint"  # ANSIBLE0010
 
