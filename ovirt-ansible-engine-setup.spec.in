@@ -51,6 +51,11 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Tue Mar 12 2019 Ondra Machacek <omachace@redhat.com> - 1.1.9-1
+- Avoid warnings on ansible 2.8.
+- Added new answer for cinderlib.
+- Change answer to yes in answerfile.
+
 * Fri Feb 22 2019 Ondra Machacek <omachace@redhat.com> - 1.1.8-1
 - Get ready for delegate_to.
 - Add wait_running_tasks option for upgrade.
