@@ -1,4 +1,7 @@
 [environment:default]
+{% if ovirt_engine_setup_fqdn %}
+OVESETUP_CONFIG/fqdn=str:{{ ovirt_engine_setup_fqdn }}
+{% endif %}
 {% if ovirt_engine_setup_firewall_manager %}
 OVESETUP_CONFIG/updateFirewall=bool:True
 OVESETUP_CONFIG/firewallManager=str:{{ ovirt_engine_setup_firewall_manager }}
