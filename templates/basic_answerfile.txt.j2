@@ -1,5 +1,5 @@
 [environment:default]
-{% if ovirt_engine_setup_fqdn %}
+{% if ovirt_engine_setup_fqdn is defined %}
 OVESETUP_CONFIG/fqdn=str:{{ ovirt_engine_setup_fqdn }}
 {% endif %}
 {% if ovirt_engine_setup_firewall_manager %}
