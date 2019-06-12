@@ -12,6 +12,7 @@
       owner: root
       group: root
     when: ovirt_engine_setup_answer_file_path is undefined
+    no_log: yes
 
   - name: Copy custom answer file
     template:
@@ -23,6 +24,7 @@
     when: ovirt_engine_setup_answer_file_path is defined and (
       ovirt_engine_setup_use_remote_answer_file is not defined or not
       ovirt_engine_setup_use_remote_answer_file)
+    no_log: yes
 
   - name: Use remote's answer file
     set_fact:
