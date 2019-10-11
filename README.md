@@ -32,7 +32,7 @@ Requirements
 ------------
 
  * Environment with configured repositories.
- * Ansible version 2.5
+ * Ansible version 2.7.2
 
 Role Variables
 --------------
