@@ -1,4 +1,7 @@
 [environment:default]
+{% if ovirt_engine_setup_apache_ssl is defined %}
+OVESETUP_APACHE_CONFIG_SSL=str:{{ovirt_engine_setup_apache_ssl}}
+{% endif %}
 {% if ovirt_engine_setup_fqdn is defined %}
 OVESETUP_CONFIG/fqdn=str:{{ ovirt_engine_setup_fqdn }}
 {% endif %}

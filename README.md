@@ -53,6 +53,7 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_fqdn               | UNDEF                 | Host fully qualified DNS name of the server. |
 | ovirt_engine_setup_organization       | UNDEF                 | Organization name for certificate. |
 | ovirt_engine_setup_firewall_manager   | firewalld             | Specify the type of firewall manager to configure on Engine host, following values are availableL: `firewalld`,`iptables` or empty value to skip firewall configuration. |
+| ovirt_engine_setup_apache_ssl		| UNDEF			| By default, we omit this variable. Engine default of `automatic` then kicks in, using engine CA to sign HTTP certificates. When set to `manual`, you'll have to take care of all the TLS settings yourself, here are [RHV 4.3 docs](https://access.redhat.com/documentation/en-us/red_hat_virtualization/4.3/html-single/administration_guide/index#Replacing_the_Manager_CA_Certificate). |
 | ovirt_engine_setup_update_setup_packages | False              | If `True`, setup packages will be updated before `engine-setup` will be executed. Makes sense if Engine is already installed. |
 | ovirt_engine_setup_update_all_packages | True                 | If `True`, all packages will be updated before `engine-setup` will be executed. |
 | ovirt_engine_setup_offline            | False                 | If `True`, `engine-setup` will not search for package updates. |
