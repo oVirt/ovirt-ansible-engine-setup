@@ -1,7 +1,4 @@
 distros:
-  - fc29
-  - fc30
   - el7
-  - el8
 release_branches:
-  master: [ "ovirt-master", "ovirt-4.3" ]
+  ovirt-ansible-engine-setup-1.1: [ "ovirt-4.3" ]
