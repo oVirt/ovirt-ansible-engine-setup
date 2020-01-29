@@ -21,7 +21,7 @@
 
 # when rhvm is not found in subscription-manager it will retry to find in packages
 - set_fact:
-    rhev_package_name: "{{ ansible_facts.packages | to_nice_json | regex_findall('\\b(rh*vm.*)\\b') | unique | first | default(omit) }}"
+    rhev_package_name: "{{ ansible_facts.packages | to_nice_json | regex_findall('\\b(rh?.vm.*)\\b') | unique | first | default(omit) }}"
 - set_fact:
     ovirt_engine_setup_version: "{{ ansible_facts.packages[rhev_package_name][0]['version'][:3] }}"
     ovirt_engine_setup_product_type: rhv
