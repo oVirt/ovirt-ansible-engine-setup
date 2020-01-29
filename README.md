@@ -93,12 +93,12 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_provider_ovn_username | admin@internal     | Username for OVN. |
 | ovirt_engine_setup_provider_ovn_password | UNDEF              | Password for OVN. |
 
-* Apache releated options:
+* Apache related options:
 
 | Name                            | Default value         |  Description                                              |
 |---------------------------------|-----------------------|-----------------------------------------------------------|
-| ovirt_engine_setup_apache_config_root_redirection | true               | If `False` the apache will not be set as default page of the web server.   |
-| ovirt_engine_setup_apache_config_ssl | true     | If `False` ssl will need to be configured manually. |
+| ovirt_engine_setup_apache_config_root_redirection | True               | If `True` engine-setup will configure the default page in Apache to automatically redirect clients to ovirt-engine default page.   |
+| ovirt_engine_setup_apache_config_ssl | True     | If `False`, engine-setup will not configure Apache SSL settings, so administrators will need to configure them manually |
 
 Dependencies
 ------------
