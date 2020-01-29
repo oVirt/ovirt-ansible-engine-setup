@@ -6,12 +6,20 @@
     ovirt_engine_setup_product_type: ovirt
   when: ovirt_package_name is defined
 
+#- set_fact:
+#    rhev_package_name: "{{ ansible_facts.packages | to_nice_json | regex_findall('\\b(rhvm.*)\\b') | unique | first | default(omit) }}"
+#- set_fact:
+#    ovirt_engine_setup_version: "{{ ansible_facts.packages[rhev_package_name][0]['version'][:3] }}"
+#    ovirt_engine_setup_product_type: rhv
+#  when: rhev_package_name is defined
+
+- shell:
+    cmd: "subscription-manager repos --list-enabled | grep -oh 'Red Hat Virtualization Manager v[0-9].[0-9]'| tail -c 4"
+  register: sub_manager
 - set_fact:
-    rhev_package_name: "{{ ansible_facts.packages | to_nice_json | regex_findall('\\b(rhvm.*)\\b') | unique | first | default(omit) }}"
-- set_fact:
-    ovirt_engine_setup_version: "{{ ansible_facts.packages[rhev_package_name][0]['version'][:3] }}"
+    ovirt_engine_setup_version: "{{ sub_manager.stdout_lines | first | default(omit)}}"
     ovirt_engine_setup_product_type: rhv
-  when: rhev_package_name is defined
+  when: ovirt_package_name is undefined and sub_manager.stdout_lines | length > 0
 
 - fail:
     msg: "You need to specify which `ovirt_engine_setup_version` and `ovirt_engine_setup_product_type`."
