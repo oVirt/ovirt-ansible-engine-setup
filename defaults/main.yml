@@ -1,5 +1,5 @@
 ---
-ovirt_engine_setup_version: '4.2'
+ovirt_engine_setup_version: '4.4'
 
 ovirt_engine_setup_provider_ovn_configure: true
 ovirt_engine_setup_provider_ovn_username: 'admin@internal'
@@ -30,3 +30,6 @@ ovirt_engine_setup_package_list: []
 ovirt_engine_setup_use_remote_answer_file: false
 
 ovirt_engine_setup_perform_upgrade: false
+
+ovirt_engine_apache_config_ssl: true
+ovirt_engine_apache_config_root_redirection: true

@@ -57,7 +57,7 @@ as ``ovirt_engine_setup_answer_file_path``.
 
 | Name                            | Default value         |  Description                                              |
 |---------------------------------|-----------------------|-----------------------------------------------------------|
-| ovirt_engine_setup_version            | 4.2                   | Allowed versions: [4.1, 4.2] |
+| ovirt_engine_setup_version            | 4.4                   | Allowed versions: [4.1, 4.2, 4.3, 4.4] |
 | ovirt_engine_setup_package_list       | []                    | List of extra packages to be installed on engine apart from ovirt-engine package. |
 | ovirt_engine_setup_fqdn               | UNDEF                 | Host fully qualified DNS name of the server. |
 | ovirt_engine_setup_organization       | UNDEF                 | Organization name for certificate. |
@@ -98,6 +98,12 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_provider_ovn_username | admin@internal     | Username for OVN. |
 | ovirt_engine_setup_provider_ovn_password | UNDEF              | Password for OVN. |
 
+* Apache related options:
+
+| Name                            | Default value         |  Description                                              |
+|---------------------------------|-----------------------|-----------------------------------------------------------|
+| ovirt_engine_setup_apache_config_root_redirection | True               | If `True` engine-setup will configure the default page in Apache to automatically redirect clients to ovirt-engine default page.   |
+| ovirt_engine_setup_apache_config_ssl | True     | If `False`, engine-setup will not configure Apache SSL settings, so administrators will need to configure them manually |
 
 Dependencies
 ------------
