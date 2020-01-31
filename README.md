@@ -41,14 +41,14 @@ By default engine-setup uses answer file specific for version of oVirt,
 based on ``ovirt_engine_setup_version`` parameter. You can specify own answer file
 as ``ovirt_engine_setup_answer_file_path``.
 
-* General options for role:
+* Common options for role:
 
 | Name                            | Default value         |  Description                                              |
 |---------------------------------|-----------------------|-----------------------------------------------------------|
 | ovirt_engine_setup_answer_file_path   | UNDEF                 | Path to custom answerfile for `engine-setup`. |
-| ovirt_engine_setup_use_remote_answer_file | false             | If `True`, use answerfile's path on the remote machine. This option should be used if the installation occure on the remote machine and the answerfile is located on there also. |
+| ovirt_engine_setup_use_remote_answer_file | False             | If `True`, use answerfile's path on the remote machine. This option should be used if the installation occure on the remote machine and the answerfile is located on there also. |
 | ovirt_engine_setup_update_setup_packages | False              | If `True`, setup packages will be updated before `engine-setup` will be executed. Makes sense if Engine is already installed. |
-| ovirt_engine_setup_perform_upgrade    | False                 | If true this role is used to perform upgrade. |
+| ovirt_engine_setup_perform_upgrade    | False                 | If `True` this role is used to perform upgrade. |
 | ovirt_engine_setup_update_all_packages | True                 | If `True`, all packages will be updated before `engine-setup` will be executed. |
 | ovirt_engine_setup_product_type       | oVirt                 | One of ["oVirt", "RHV"], case insensitive. |
 | ovirt_engine_setup_offline            | False                 | If `True`, `engine-setup` will not search for package updates. |
@@ -64,8 +64,8 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_firewall_manager   | firewalld             | Specify the type of firewall manager to configure on Engine host, following values are availableL: `firewalld`,`iptables` or empty value to skip firewall configuration. |
 | ovirt_engine_setup_require_rollback   | UNDEF                 | If `True` setup will require to be able to rollback new packages in case of a failure. If not passed the default answer from `engine-setup` will be chosen. Valid for updating/upgrading. |
 | ovirt_engine_setup_admin_password     | UNDEF                 | Password for the automatically created administrative user of the oVirt Engine.
-| ovirt_engine_setup_wait_running_tasks | False                 | If true, engine-setup will wait till running tasks finish. Valid for `ovirt_engine_setup_version` >= 4.2 |
-| ovirt_engine_cinderlib_enable         | False                 | If true, cinderlib enabled.. Valid for `ovirt_engine_setup_version` >= 4.3 |
+| ovirt_engine_setup_wait_running_tasks | False                 | If `True`, engine-setup will wait till running tasks finish. Valid for `ovirt_engine_setup_version` >= 4.2 |
+| ovirt_engine_cinderlib_enable         | False                 | If `True`, cinderlib enabled.. Valid for `ovirt_engine_setup_version` >= 4.3 |
 
 * Engine Database:
 
@@ -94,7 +94,7 @@ as ``ovirt_engine_setup_answer_file_path``.
 
 | Name                            | Default value         |  Description                                              |
 |---------------------------------|-----------------------|-----------------------------------------------------------|
-| ovirt_engine_setup_provider_ovn_configure| true               | If `True` OVN provider will be configured. Valid for `ovirt_engine_setup_version` >= 4.2 |
+| ovirt_engine_setup_provider_ovn_configure| True               | If `True` OVN provider will be configured. Valid for `ovirt_engine_setup_version` >= 4.2 |
 | ovirt_engine_setup_provider_ovn_username | admin@internal     | Username for OVN. |
 | ovirt_engine_setup_provider_ovn_password | UNDEF              | Password for OVN. |
 
