@@ -40,6 +40,8 @@ Role Variables
 By default engine-setup uses answer file specific for version of oVirt,
 based on ``ovirt_engine_setup_version`` parameter. You can specify own answer file
 as ``ovirt_engine_setup_answer_file_path``.
+Roles tries to automatically detect `ovirt_engine_setup_product_type` and `ovirt_engine_setup_version` from
+installed/subscribed repositories on engine.
 
 * Common options for role:
 
@@ -50,7 +52,7 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_update_setup_packages | False              | If `True`, setup packages will be updated before `engine-setup` will be executed. Makes sense if Engine is already installed. |
 | ovirt_engine_setup_perform_upgrade    | False                 | If `True` this role is used to perform upgrade. |
 | ovirt_engine_setup_update_all_packages | True                 | If `True`, all packages will be updated before `engine-setup` will be executed. |
-| ovirt_engine_setup_product_type       | oVirt                 | One of ["oVirt", "RHV"], case insensitive. |
+| ovirt_engine_setup_product_type       | UNDEF                 | One of ["oVirt", "RHV"], case insensitive. |
 | ovirt_engine_setup_offline            | False                 | If `True`, `engine-setup` will not search for package updates. |
 
 * Common options for engine:
@@ -124,6 +126,7 @@ Example Playbook
   vars:
     ovirt_engine_setup_version: '4.2'
     ovirt_engine_setup_organization: 'of.ovirt.engine.com'
+    ovirt_engine_setup_product_type: 'ovirt'
   roles:
     - ovirt.engine-setup
 
