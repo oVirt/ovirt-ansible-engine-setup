@@ -1,7 +1,7 @@
 ---
 - name: Get product version from rpm
   include_tasks: set_engine_info.yml
-  when: ovirt_engine_setup_version is undefined
+  when: ovirt_engine_setup_version is undefined or ovirt_engine_setup_product_type is undefined
 
 - name: Install required packages for oVirt Engine deployment
   include_tasks: install_packages.yml
