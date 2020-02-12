@@ -8,14 +8,14 @@
     ovirt_package_name: "{{ ansible_facts.packages | to_nice_json | regex_findall('\\b(ovirt-release.*)\\b') | unique | default(omit) }}"
 
 - fail:
-    msg: "Multiple versions of ovirt-release were found in host.\n
+    msg: "Multiple versions of ovirt-release were found in host.
           You need to specify which `ovirt_engine_setup_version` and `ovirt_engine_setup_product_type`."
   when: ovirt_package_name | length > 1
 
 - set_fact:
     ovirt_engine_setup_version: "{{ ansible_facts.packages[ovirt_package_name[0]][0]['version'][:3] }}"
     ovirt_engine_setup_product_type: ovirt
-  when: ovirt_package_name is defined
+  when: ovirt_package_name | length == 1
 
 - block:
   - shell:
@@ -24,21 +24,23 @@
   - set_fact:
       ovirt_engine_setup_version: "{{ sub_manager.stdout_lines | first | default(omit)}}"
       ovirt_engine_setup_product_type: rhv
-    when: ovirt_package_name is undefined and sub_manager.stdout_lines | length > 0
+    when: sub_manager.stdout_lines | length > 0
+  when: ovirt_engine_setup_product_type is undefined and ovirt_engine_setup_product_type is undefined
 
-  # when rhvm is not found in subscription-manager it will retry to find in packages
+# when rhvm is not found in subscription-manager it will retry to find in packages
+- block:
   - set_fact:
-      rhev_package_name: "{{ ansible_facts.packages | to_nice_json | regex_findall('\\b(rh?.vm.*)\\b') | unique | default(omit) }}"
+      rhev_package_name: "{{ ansible_facts.packages | to_nice_json | regex_findall('\\b(rh?.vm)\\b') | unique | default(omit) }}"
 
   - fail:
-      msg: "Multiple versions of rhvm releases were found in host.\n
+      msg: "Multiple versions of rhvm releases were found in host.
             You need to specify which `ovirt_engine_setup_version` and `ovirt_engine_setup_product_type`."
     when: rhev_package_name | length > 1
 
   - set_fact:
       ovirt_engine_setup_version: "{{ ansible_facts.packages[rhev_package_name[0]][0]['version'][:3] }}"
       ovirt_engine_setup_product_type: rhv
-    when: ovirt_engine_setup_product_type is undefined and ovirt_engine_setup_product_type is undefined
+    when: rhev_package_name | length == 1
   when: ovirt_engine_setup_product_type is undefined and ovirt_engine_setup_product_type is undefined
 
 - fail:
