@@ -1,0 +1,10 @@
+---
+- name: Gather facts on installed packages
+  package_facts:
+
+- name: Fail when {{ default_firewall_manager }} is not installed
+  fail:
+    msg: '{{ ovirt_engine_setup_firewall_manager }} was chosen as default firewall manager but is not installed'
+  when: >
+    ovirt_engine_setup_firewall_manager == default_firewall_manager and
+    default_firewall_manager not in ansible_facts.packages
