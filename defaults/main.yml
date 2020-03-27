@@ -17,7 +17,7 @@ ovirt_engine_setup_dwh_db_name: 'ovirt_engine_history'
 ovirt_engine_setup_dwh_db_user: 'ovirt_engine_history'
 ovirt_engine_setup_dwh_vacuum_full: false
 
-ovirt_engine_setup_firewall_manager: '{{ default_firewall_manager }}'
+ovirt_engine_setup_firewall_manager: 'firewalld'
 
 # This option is suggested from oVirt Documentation
 # https://www.ovirt.org/documentation/install-guide/chap-Installing_oVirt/

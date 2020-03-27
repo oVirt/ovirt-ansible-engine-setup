@@ -1,10 +1,12 @@
 ---
 - name: Gather facts on installed packages
   package_facts:
+    manager: rpm
+  no_log: true
 
-- name: Fail when {{ default_firewall_manager }} is not installed
+- name: Fail when firewall manager is not installed
   fail:
-    msg: '{{ ovirt_engine_setup_firewall_manager }} was chosen as default firewall manager but is not installed'
-  when: >
-    ovirt_engine_setup_firewall_manager == default_firewall_manager and
-    default_firewall_manager not in ansible_facts.packages
+    msg: '{{ ovirt_engine_setup_firewall_manager }} was chosen as a firewall manager but is not installed'
+  when:
+    - ovirt_engine_setup_firewall_manager not in ansible_facts.packages
+    - ovirt_engine_setup_firewall_manager|bool
