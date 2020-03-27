@@ -45,7 +45,7 @@
     package:
       name: "*"
       state: latest
-    when: ovirt_engine_setup_update_all_packages|bool
+    when: ovirt_engine_setup_update_all_packages|bool and not ovirt_engine_setup_offline|bool
     tags:
       - "skip_ansible_lint"  # ANSIBLE0010
 
