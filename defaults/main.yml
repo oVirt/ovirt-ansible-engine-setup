@@ -21,7 +21,6 @@ ovirt_engine_setup_firewall_manager: 'firewalld'
 
 # This option is suggested from oVirt Documentation
 # https://www.ovirt.org/documentation/install-guide/chap-Installing_oVirt/
-ovirt_engine_setup_update_all_packages: true
 ovirt_engine_setup_update_setup_packages: false
 ovirt_engine_setup_offline: false
 
