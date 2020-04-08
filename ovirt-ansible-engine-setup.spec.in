@@ -51,6 +51,9 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Wed Apr 8 2020 Martin Necas <mnecas@redhat.com> - 1.2.3-1
+- Add apache config.
+
 * Tue Mar 3 2020 Martin Necas <mnecas@redhat.com> - 1.2.2-1
 - Add apache config.
 
