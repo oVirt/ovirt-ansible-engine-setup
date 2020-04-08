@@ -51,6 +51,11 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Wed Apr 8 2020 Martin Necas <mnecas@redhat.com> - 1.2.3-1
+- Add pre-install checks.
+- Update ovirt_engine_setup_offline when upgrading packages.
+- Remove ovirt_engine_setup_update_all_packages variable.
+
 * Tue Mar 3 2020 Martin Necas <mnecas@redhat.com> - 1.2.2-1
 - Add apache config.
 
