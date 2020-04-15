@@ -47,8 +47,8 @@ as ``ovirt_engine_setup_answer_file_path``.
 |---------------------------------|-----------------------|-----------------------------------------------------------|
 | ovirt_engine_setup_answer_file_path   | UNDEF                 | Path to custom answerfile for `engine-setup`. |
 | ovirt_engine_setup_use_remote_answer_file | False             | If `True`, use answerfile's path on the remote machine. This option should be used if the installation occure on the remote machine and the answerfile is located on there also. |
-| ovirt_engine_setup_update_setup_packages | False              | If `True`, setup packages will be updated before `engine-setup` will be executed. Makes sense if Engine is already installed. |
-| ovirt_engine_setup_perform_upgrade    | False                 | If `True` this role is used to perform upgrade. |
+| ovirt_engine_setup_update_setup_packages | True              | If `True`, setup packages will be updated before `engine-setup` will be executed. Makes sense if Engine is already installed. |
+| ovirt_engine_setup_perform_upgrade    | True                 | If `True` this role is used to perform upgrade. |
 | ovirt_engine_setup_product_type       | oVirt                 | One of ["oVirt", "RHV"], case insensitive. |
 | ovirt_engine_setup_offline            | False                 | If `True`, updates for all packages will be disabled |
 
