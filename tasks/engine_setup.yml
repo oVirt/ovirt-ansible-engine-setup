@@ -32,9 +32,10 @@
     when: ovirt_engine_setup_use_remote_answer_file|bool
 
   - name: Update setup packages
-    # WA for https://github.com/ansible/ansible/issues/34867 whic didn't get
-    # fixed by suggested update_only parameter.
-    command: yum -y update ovirt\*setup\*
+    yum:
+      name: "ovirt*setup*"
+      update_only: true
+      state: latest
     when: ovirt_engine_setup_update_setup_packages or ovirt_engine_setup_perform_upgrade
     args:
       warn: false
