@@ -37,8 +37,6 @@
       update_only: true
       state: latest
     when: ovirt_engine_setup_update_setup_packages or ovirt_engine_setup_perform_upgrade
-    args:
-      warn: false
     tags:
       - "skip_ansible_lint"  # ANSIBLE0006
 
