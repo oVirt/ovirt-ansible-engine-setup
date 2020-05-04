@@ -149,11 +149,12 @@ Example Playbook
     # Contains encrypted `ovirt_engine_setup_admin_password` variable using ansible-vault
     - passwords.yml
   vars:
-    ovirt_engine_setup_version: '4.2'
+    ovirt_engine_setup_version: '4.4'
     ovirt_engine_setup_organization: 'of.ovirt.engine.com'
     ovirt_engine_setup_engine_configs:
       - key: SpiceProxyDefault
         value: prot://proxy
+        version: "general"
 
   roles:
     - ovirt.engine-setup
