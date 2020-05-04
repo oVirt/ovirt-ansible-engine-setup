@@ -154,7 +154,7 @@ Example Playbook
     ovirt_engine_setup_engine_configs:
       - key: SpiceProxyDefault
         value: prot://proxy
-        version: "general"
+        version: general
 
   roles:
     - ovirt.engine-setup
