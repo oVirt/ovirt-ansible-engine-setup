@@ -65,6 +65,7 @@ to ``ovirt_engine_setup_answer_file_path`` variable.
 | ovirt_engine_setup_admin_password     | UNDEF                 | Password for the automatically created administrative user of the oVirt Engine.
 | ovirt_engine_setup_wait_running_tasks | False                 | If `True`, engine-setup will wait for running tasks to finish. Valid for `ovirt_engine_setup_version` >= 4.2. |
 | ovirt_engine_cinderlib_enable         | False                 | If `True`, cinderlib is enabled. Valid for `ovirt_engine_setup_version` >= 4.3. |
+| ovirt_engine_setup_engine_configs     | []                    | List of dictionaries with keys `key`, `value` and `version`. The engine-config will be called with parametrs "-s `key`=`value`" when specified `version` it will append "--cver=`version`" to the config.  |
 
 * Engine Database:
 
@@ -126,6 +127,7 @@ Example Playbook
   roles:
     - ovirt.engine-setup
 
+
 # Example of RHV setup:
 - name: Setup RHV
   hosts: engine
@@ -136,6 +138,24 @@ Example Playbook
     ovirt_engine_setup_version: '4.2'
     ovirt_engine_setup_organization: 'rhv.redhat.com'
     ovirt_engine_setup_product_type: 'rhv'
+  roles:
+    - ovirt.engine-setup
+
+
+# Example of oVirt setup with engine_configs:
+- name: Setup oVirt
+  hosts: engine
+  vars_files:
+    # Contains encrypted `ovirt_engine_setup_admin_password` variable using ansible-vault
+    - passwords.yml
+  vars:
+    ovirt_engine_setup_version: '4.4'
+    ovirt_engine_setup_organization: 'of.ovirt.engine.com'
+    ovirt_engine_setup_engine_configs:
+      - key: SpiceProxyDefault
+        value: prot://proxy
+        version: general
+
   roles:
     - ovirt.engine-setup
 ```

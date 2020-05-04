@@ -71,6 +71,16 @@
     delay: 10
     until: health_page is success
 
+  - name: Run engine-config
+    command: "engine-config -s {{ item.key }}='{{ item.value }}' {% if item.version is defined %} --cver={{ item.version }} {% endif %}"
+    loop: "{{ ovirt_engine_setup_engine_configs | default([]) }}"
+
+  - name: Restart engine after engine-config
+    service:
+      name: ovirt-engine
+      state: restarted
+    when: ovirt_engine_setup_engine_configs is defined
+
   always:
     - name: Clean temporary files
       file:
