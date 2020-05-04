@@ -65,7 +65,7 @@ as ``ovirt_engine_setup_answer_file_path``.
 | ovirt_engine_setup_admin_password     | UNDEF                 | Password for the automatically created administrative user of the oVirt Engine.
 | ovirt_engine_setup_wait_running_tasks | False                 | If `True`, engine-setup will wait till running tasks finish. Valid for `ovirt_engine_setup_version` >= 4.2 |
 | ovirt_engine_cinderlib_enable         | False                 | If `True`, cinderlib enabled.. Valid for `ovirt_engine_setup_version` >= 4.3 |
-| ovirt_engine_setup_engine_configs     | []                    | List of dictionaries with keys `name` and `value`. The engine-config will be called with parametrs "-s `name`=`value`".  |
+| ovirt_engine_setup_engine_configs     | []                    | List of dictionaries with keys `key`, `value` and `version`. The engine-config will be called with parametrs "-s `key`=`value`" when specified `version` it will append "--cver=`version`" to the config.  |
 
 * Engine Database:
 
@@ -152,7 +152,7 @@ Example Playbook
     ovirt_engine_setup_version: '4.2'
     ovirt_engine_setup_organization: 'of.ovirt.engine.com'
     ovirt_engine_setup_engine_configs:
-      - name: SpiceProxyDefault
+      - key: SpiceProxyDefault
         value: prot://proxy
 
   roles:
