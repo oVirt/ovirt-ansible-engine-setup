@@ -51,6 +51,10 @@ sh build.sh install
 %license LICENSE
 
 %changelog
+* Tue May 12 2020 Martin Necas <mnecas@redhat.com> - 1.2.4-1
+- Add engine-config.
+- Clarify README.md.
+
 * Wed Apr 8 2020 Martin Necas <mnecas@redhat.com> - 1.2.3-1
 - Add pre-install checks.
 - Update ovirt_engine_setup_offline when upgrading packages.
