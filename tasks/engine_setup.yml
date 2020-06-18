@@ -32,12 +32,11 @@
     when: ovirt_engine_setup_use_remote_answer_file|bool
 
   - name: Update setup packages
-    # WA for https://github.com/ansible/ansible/issues/34867 whic didn't get
-    # fixed by suggested update_only parameter.
-    command: yum -y update ovirt\*setup\*
+    yum:
+      name: "ovirt*setup*"
+      update_only: true
+      state: latest
     when: ovirt_engine_setup_update_setup_packages or ovirt_engine_setup_perform_upgrade
-    args:
-      warn: false
     tags:
       - "skip_ansible_lint"  # ANSIBLE0006
 
@@ -45,13 +44,13 @@
     package:
       name: "*"
       state: latest
-    when: ovirt_engine_setup_update_all_packages|bool
+    when: not ovirt_engine_setup_offline|bool
     tags:
       - "skip_ansible_lint"  # ANSIBLE0010
 
   - name: Set offline parameter if variable is set
     set_fact:
-      offline: "{{ '--offline' if ovirt_engine_setup_offline else '' }}"
+      offline: "{{ '--offline' if ovirt_engine_setup_offline|bool else '' }}"
 
   - name: Run engine-setup with answerfile
     command: "engine-setup --accept-defaults --config-append={{ answer_file_path }} {{ offline }}"
@@ -71,6 +70,16 @@
     retries: 30
     delay: 10
     until: health_page is success
+
+  - name: Run engine-config
+    command: "engine-config -s {{ item.key }}='{{ item.value }}' {% if item.version is defined %} --cver={{ item.version }} {% endif %}"
+    loop: "{{ ovirt_engine_setup_engine_configs | default([]) }}"
+
+  - name: Restart engine after engine-config
+    service:
+      name: ovirt-engine
+      state: restarted
+    when: ovirt_engine_setup_engine_configs is defined
 
   always:
     - name: Clean temporary files
