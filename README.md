@@ -1,6 +1,8 @@
 oVirt Engine Setup
 ==================
 
+## This role has been migrated to [oVirt Ansible Collection](https://github.com/ovirt/ovirt-ansible-collection), please use latest version from there. This repository is now readonly and no longer used for active development
+
 Installs required packages for oVirt Engine deployment, generates answerfile
 and runs engine-setup.
 Optionally the role updates oVirt engine packages.
